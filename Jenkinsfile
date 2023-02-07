@@ -1,5 +1,8 @@
 pipeline {
-  agent { label 'sudo' }
+  agent { label 'linux' }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('bujaretemi1998-dockerhub')
   }
