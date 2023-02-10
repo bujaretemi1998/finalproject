@@ -24,7 +24,7 @@ jobs:
       
       - name: Run tests
         run: |
-          docker run -e CI=true bujaretemi1998/react-test npm test -- --forceExit
+          docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
       - name: Build Docker images
         run: |
@@ -33,4 +33,4 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
