@@ -25,7 +25,7 @@ jobs:
         run: |
           docker run -e CI=true bujaretemi1998/react-test npm test -- --forceExit
 
-      - name: Build and push Docker images
+      - name: Build Docker images
         run: |
           docker build -t bujaretemi1998/multi-client ./client
           docker build -t bujaretemi1998/multi-nginx ./nginx
@@ -33,3 +33,10 @@ jobs:
           docker build -t bujaretemi1998/multi-worker ./worker
           
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER
+          
+      - name: Push Docker images
+        run: |
+          docker push bujaretemi1998/multi-cli 
+          docker push bujaretemi1998/multi-nginx
+          docker push bujaretemi1998/multi-server 
+          docker push bujaretemi1998/multi-worker
