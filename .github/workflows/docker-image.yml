@@ -33,10 +33,3 @@ jobs:
           docker build -t bujaretemi1998/multi-worker ./worker
           
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-          
-      - name: Push Docker images
-        run: |
-          docker push bujaretemi1998/multi-cli 
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server 
-          docker push bujaretemi1998/multi-worker
