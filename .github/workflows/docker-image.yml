@@ -41,3 +41,5 @@ jobs:
           docker push bujaretemi1998/multi-nginx
           docker push bujaretemi1998/multi-server
           docker push bujaretemi1998/multi-worker
+          
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
