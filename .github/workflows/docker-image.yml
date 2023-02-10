@@ -33,7 +33,7 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           
-          echo docker login -p "$DOCKER_PASSWORD" | -u "$DOCKER_ID"
+          echo docker login -u -p "$DOCKER_PASSWORD" | "$DOCKER_ID"
           
       - name: Push Docker images
         run: |
