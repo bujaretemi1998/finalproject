@@ -33,7 +33,7 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" docker.io
           
       - name: Push Docker images
         run: |
@@ -41,5 +41,3 @@ jobs:
           docker push bujaretemi1998/multi-nginx
           docker push bujaretemi1998/multi-server
           docker push bujaretemi1998/multi-worker
-          
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
