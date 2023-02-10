@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  DOCKER_ID: ${{ DOCKER_ID }}
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
