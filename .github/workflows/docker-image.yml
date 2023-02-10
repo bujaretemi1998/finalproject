@@ -23,7 +23,7 @@ jobs:
       
       - name: Run tests
         run: |
-          docker run bujaretemi1998/react-test npm test -- --forceExit
+          docker run -e CI=true bujaretemi1998/react-test npm test -- --forceExit
 
       - name: Build and push Docker images
         run: |
