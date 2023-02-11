@@ -8,8 +8,6 @@ on:
 env:
   DOCKER_ID: "$DOCKER_ID"
   DOCKER_PASSWORD: "$DOCKER_PASSWORD"
-  CI: CI=false
-  PermitRootLogin: yes
 
 jobs:
   build:
@@ -35,10 +33,3 @@ jobs:
           docker build -t bujaretemi1998/multi-worker ./worker
           
           echo -p "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
-          
-      - name: Push Docker images
-        run: |
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
