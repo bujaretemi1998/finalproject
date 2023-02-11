@@ -7,7 +7,7 @@ on:
       
 env:
   DOCKER_ID: "$DOCKER_ID"
-  DOCKER_PASSWORD: "$secrets.DOCKER_PASSWORD"
+  DOCKER_PASSWORD: "$DOCKER_PASSWORD"
   CI: CI=false
   PermitRootLogin: yes
 
