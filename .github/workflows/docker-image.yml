@@ -38,6 +38,7 @@ jobs:
         
     - name: Log in to Docker CLI and push images to Docker Hub
       run: |
+        echo "$DOCKER_PASSWORD" | docker login "$DOCKER_ID"
         docker push bujaretemi1998/multi-client
         docker push bujaretemi1998/multi-nginx
         docker push bujaretemi1998/multi-server
