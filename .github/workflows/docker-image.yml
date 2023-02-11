@@ -33,7 +33,7 @@ jobs:
         docker build -t bujaretemi1998/multi-nginx ./nginx
         docker build -t bujaretemi1998/multi-server ./server
         docker build -t bujaretemi1998/multi-worker ./worker
-        echo docker login "$DOCKER_ID" | $DOCKER_PASSWORD"
+        echo docker login "$DOCKER_ID" | "$DOCKER_PASSWORD"
         
                 
     - name: Push images to Docker Hub
