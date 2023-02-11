@@ -38,7 +38,7 @@ jobs:
               
       - name: Push images to Docker Hub
         run: |
-          sudo docker push bujaretemi1998/multi-client
-          sudo docker push bujaretemi1998/multi-nginx
-          sudo docker push bujaretemi1998/multi-server
-          sudo docker push bujaretemi1998/multi-worker
+          sudo --non-interactive docker push bujaretemi1998/multi-client
+          sudo --non-interactive docker push bujaretemi1998/multi-nginx
+          sudo --non-interactive docker push bujaretemi1998/multi-server
+          sudo --non-interactive docker push bujaretemi1998/multi-worker
