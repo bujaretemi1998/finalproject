@@ -19,7 +19,7 @@ jobs:
 
       - name: Build client Docker test image
         run: |
-          docker build -it bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
+          docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
         run: |
