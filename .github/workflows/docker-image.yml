@@ -6,8 +6,8 @@ on:
       - master
       
 env:
-  DOCKER_ID: "$secrets.DOCKER_ID"
-  DOCKER_PASSWORD: "$secrets.DOCKER_PASSWORD"
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   build:
@@ -32,4 +32,4 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           
-          echo -p "$secrets.DOCKER_PASSWORD" | docker login -u "$secrets.DOCKER_ID"
+          echo -p ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_ID }}
