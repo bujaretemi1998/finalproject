@@ -33,6 +33,7 @@ jobs:
         docker build -t bujaretemi1998/multi-nginx ./nginx
         docker build -t bujaretemi1998/multi-server ./server
         docker build -t bujaretemi1998/multi-worker ./worker
+        echo "$DOCKER_PASSWORD" | docker login "$DOCKER_ID"
         docker login ${{ env.DOCKER_ID }} ${{ env.DOCKER_PASSWORD }}
         
         
