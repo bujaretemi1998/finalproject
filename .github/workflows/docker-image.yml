@@ -5,12 +5,6 @@ on:
     branches:
       - master
 
-env:
-  DOCKER_ID: "$secrets.DOCKER_ID"
-  DOCKER_PASSWORD: "$secrets.DOCKER_PASSWORD"
-  CI: CI=false
-  PermitRootLogin: yes
-
 jobs:
   build:
     runs-on: ubuntu-latest
