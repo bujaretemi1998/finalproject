@@ -19,25 +19,25 @@ jobs:
 
       - name: Build client Docker test image
         run: |
-          docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
+          docker build -it bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
         run: |
-          sudo docker run -t -e CI=true bujaretemi1998/react-test npm test -- --coverage
+          sudo docker run -it -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
       - name: Build Docker images
         run: |
-          sudo docker build -t bujaretemi1998/multi-client ./client
-          sudo docker build -t bujaretemi1998/multi-nginx ./nginx
-          sudo docker build -t bujaretemi1998/multi-server ./server
-          sudo docker build -t bujaretemi1998/multi-worker ./worker
+          sudo docker build -it bujaretemi1998/multi-client ./client
+          sudo docker build -it bujaretemi1998/multi-nginx ./nginx
+          sudo docker build -it bujaretemi1998/multi-server ./server
+          sudo docker build -it bujaretemi1998/multi-worker ./worker
           sudo docker run --rm -it -v "$(pwd)":/app ubuntu bash
           echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_ID }} --password-stdin
           
               
       - name: Push images to Docker Hub
         run: |
-          sudo --non-interactive docker push -t bujaretemi1998/multi-client
-          sudo --non-interactive docker push -t bujaretemi1998/multi-nginx
-          sudo --non-interactive docker push -t bujaretemi1998/multi-server
-          sudo --non-interactive docker push -t bujaretemi1998/multi-worker
+          sudo --non-interactive docker push -it bujaretemi1998/multi-client
+          sudo --non-interactive docker push -it bujaretemi1998/multi-nginx
+          sudo --non-interactive docker push -it bujaretemi1998/multi-server
+          sudo --non-interactive docker push -it bujaretemi1998/multi-worker
