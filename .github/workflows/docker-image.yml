@@ -36,10 +36,10 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build -t bujaretemi1998/multi-client ./client
-          docker build -t bujaretemi1998/multi-nginx ./nginx
-          docker build -t bujaretemi1998/multi-server ./server
-          docker build -t bujaretemi1998/multi-worker ./worker
+          docker build -t bujaretemi1998/multi-client:latest ./client
+          docker build -t bujaretemi1998/multi-nginx:latest ./nginx
+          docker build -t bujaretemi1998/multi-server:latest ./server
+          docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_ID }} --password-stdin
           
               
