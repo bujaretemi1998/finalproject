@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      
+  
 env:
   DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -16,6 +16,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Modify Docker daemon configuration
+        run: |
+          sudo mkdir -p /etc/systemd/system/docker.service.d
+          echo '[Service]
+          ExecStart=
+          ExecStart=/usr/bin/dockerd -D -H fd:// -H tcp://0.0.0.0:2375 --host=unix:///var/run/docker.sock' | sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
+          sudo systemctl daemon-reload
+          sudo systemctl restart docker
 
       - name: Build client Docker test image
         run: |
@@ -31,7 +40,6 @@ jobs:
           sudo docker build -it bujaretemi1998/multi-nginx ./nginx
           sudo docker build -it bujaretemi1998/multi-server ./server
           sudo docker build -it bujaretemi1998/multi-worker ./worker
-          sudo docker run --rm -it -v "$(pwd)":/app ubuntu bash
           echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_ID }} --password-stdin
           
               
