@@ -6,8 +6,8 @@ on:
       - master
   
 env:
-  DOCKER_ID: ${{ DOCKER_ID }}
-  DOCKER_PASSWORD: ${{ DOCKER_PASSWORD }}
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo -p ${{ DOCKER_PASSWORD }} | sudo docker login ghcr.io -u ${{ DOCKER_ID }} --password-stdin
+          echo -p ${{ secrets.DOCKER_PASSWORD }} | sudo docker login ghcr.io -u ${{ secrets.DOCKER_ID }} --password-stdin
               
       - name: Push images to Docker Hub
         run: |
