@@ -32,7 +32,15 @@ jobs:
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo -p ${{ secrets.DOCKER_PASSWORD }} | sudo docker login ghcr.io -u ${{ secrets.DOCKER_ID }} --password-stdin
-          
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKER_ID }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: bujaretemi1998/docker:latest
               
       - name: Push images to Docker Hub
         run: |
