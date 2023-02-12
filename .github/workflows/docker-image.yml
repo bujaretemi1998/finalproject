@@ -32,20 +32,20 @@ jobs:
       
       - name: Run tests
         run: |
-          sudo docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
+          docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
       - name: Build Docker images
         run: |
-          sudo docker build bujaretemi1998/multi-client ./client
-          sudo docker build bujaretemi1998/multi-nginx ./nginx
-          sudo docker build bujaretemi1998/multi-server ./server
-          sudo docker build bujaretemi1998/multi-worker ./worker
+          docker build bujaretemi1998/multi-client ./client
+          docker build bujaretemi1998/multi-nginx ./nginx
+          docker build bujaretemi1998/multi-server ./server
+          docker build bujaretemi1998/multi-worker ./worker
           echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_ID }} --password-stdin
           
               
       - name: Push images to Docker Hub
         run: |
-          sudo --non-interactive docker push bujaretemi1998/multi-client
-          sudo --non-interactive docker push bujaretemi1998/multi-nginx
-          sudo --non-interactive docker push bujaretemi1998/multi-server
-          sudo --non-interactive docker push bujaretemi1998/multi-worker
+          --non-interactive docker push bujaretemi1998/multi-client
+          --non-interactive docker push bujaretemi1998/multi-nginx
+          --non-interactive docker push bujaretemi1998/multi-server
+          --non-interactive docker push bujaretemi1998/multi-worker
