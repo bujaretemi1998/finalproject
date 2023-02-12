@@ -17,15 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Modify Docker daemon configuration
-        run: |
-          sudo mkdir -p /etc/systemd/system/docker.service.d
-          echo '[Service]
-          ExecStart=
-          ExecStart=/usr/bin/dockerd -D -H fd:// -H tcp://0.0.0.0:2375 --host=unix:///var/run/docker.sock' | sudo tee /etc/systemd/system/docker.service.d/startup_options.conf
-          sudo systemctl daemon-reload
-          sudo systemctl restart docker
-
       - name: Build client Docker test image
         run: |
           docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
@@ -40,7 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo -p "$DOCKER_PASSWORD" | sudo docker login -u "$DOCKER_ID"
+          echo -p ${{ env.DOCKER_PASSWORD }} | sudo docker login ghcr.io -u ${{ env.DOCKER_ID }} --password-stdin
           
               
       - name: Push images to Docker Hub
