@@ -32,7 +32,7 @@ jobs:
       
       - name: Run tests
         run: |
-          sudo docker run -it -e CI=true bujaretemi1998/react-test npm test -- --coverage
+          sudo docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
       - name: Build Docker images
         run: |
