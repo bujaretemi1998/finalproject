@@ -32,3 +32,10 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ secrets.DOCKER_ID }}
+
+      - name: Push images to Docker Hub
+        run: |
+          docker push bujaretemi1998/multi-client
+          docker push bujaretemi1998/multi-nginx
+          docker push bujaretemi1998/multi-server
+          docker push bujaretemi1998/multi-worker
