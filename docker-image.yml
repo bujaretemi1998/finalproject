@@ -4,10 +4,17 @@ on:
   push:
     branches:
       - master
-      
+
+volumes:
+      - name: dockerconfig
+        path: /root/.docker
+        read_only: true
+        path_relative_to_context: ${{ github.workspace }}/config.json
+
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_ID }}
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  DOCKER_CONFIG: /root/.docker
 
 jobs:
   build:
@@ -31,7 +38,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD --password-stdin
+          docker login -u $DOCKER_ID -p $DOCKER_PASSWORD --password-stdin
 
       - name: Push images to Docker Hub
         run: |
