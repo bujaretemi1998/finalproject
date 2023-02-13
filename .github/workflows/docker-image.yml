@@ -32,7 +32,10 @@ jobs:
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo --password-stdin "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID"
-          sudo docker push bujaretemi1998/multi-client
-          sudo docker push bujaretemi1998/multi-nginx
-          sudo docker push bujaretemi1998/multi-server
-          sudo docker push bujaretemi1998/multi-worker
+          
+      - name: Push images to Docker Hub
+        run: |
+          docker push bujaretemi1998/multi-client
+          docker push bujaretemi1998/multi-nginx
+          docker push bujaretemi1998/multi-server
+          docker push bujaretemi1998/multi-worker
