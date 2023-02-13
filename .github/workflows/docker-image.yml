@@ -31,7 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server:multi-server ./server
           docker build -t bujaretemi1998/multi-worker:multi-worker ./worker
-          echo -p ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_ID }}
+          echo --password ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_ID }}
           
       - name: Push images to Docker Hub
         run: |
