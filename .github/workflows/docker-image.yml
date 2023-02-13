@@ -31,11 +31,11 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
+          docker login -u $DOCKER_ID -p $DOCKER_PASSWORD --password-stdin
 
       - name: Push images to Docker Hub
         run: |
-          sudo docker push bujaretemi1998/multi-client:latest
-          sudo docker push bujaretemi1998/multi-nginx:latest
-          sudo docker push bujaretemi1998/multi-server:latest
-          sudo docker push bujaretemi1998/multi-worker:latest
+          sudo docker push bujaretemi1998/multi-client
+          sudo docker push bujaretemi1998/multi-nginx
+          sudo docker push bujaretemi1998/multi-server
+          sudo docker push bujaretemi1998/multi-worker
