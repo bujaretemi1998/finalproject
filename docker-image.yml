@@ -31,8 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo -p ${{ secrets.DOCKER_PASSWORD }} | sudo docker login ghcr.io -u ${{ secrets.DOCKER_ID }} --password-stdin
-              
+          echo -p ${{ secrets.DOCKER_PASSWORD }} --password-stdin | docker login -u ${{ secrets.DOCKER_ID }}              
       - name: Push images to Docker Hub
         run: |
           docker push bujaretemi1998/multi-client
