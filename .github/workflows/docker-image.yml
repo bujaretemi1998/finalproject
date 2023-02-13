@@ -31,7 +31,6 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD --password-stdin
 
       - name: Push images to Docker Hub
         run: |
