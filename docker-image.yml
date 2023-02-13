@@ -31,4 +31,4 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ secrets.DOCKER_ID }} --password-stdin              
+          echo $DOCKER_PASSWORD --password-stdin | docker login --username=$secrets.DOCKER_ID              
