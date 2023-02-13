@@ -31,8 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo "${{ secrets.DOCKER_PASSWORD }} ${{ secrets.DOCKER_ID }}"
-          docker login -u "$ {{ secrets.DOCKER_ID }}" -p "${{ secrets.DOCKER_PASSWORD }}"
+          echo -p ${{ secrets.DOCKER_PASSWORD }} | winpty docker login -u ${{ secrets.DOCKER_ID }} --password-stdin
               
       - name: Push images to Docker Hub
         run: |
