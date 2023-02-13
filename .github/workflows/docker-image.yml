@@ -35,7 +35,6 @@ jobs:
 
       - name: Push images to Docker Hub
         run: |
-          echo $DOCKER_PASSWORD --password-stdin | docker login --username=$DOCKER_ID
           sudo docker push bujaretemi1998/multi-client:latest
           sudo docker push bujaretemi1998/multi-nginx:latest
           sudo docker push bujaretemi1998/multi-server:latest
