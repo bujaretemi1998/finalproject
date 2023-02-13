@@ -35,7 +35,7 @@ jobs:
           
       - name: Push images to Docker Hub
         run: |
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
+          docker push bujaretemi1998/multi-client:latest
+          docker push bujaretemi1998/multi-nginx:latest
+          docker push bujaretemi1998/multi-server:latest
+          docker push bujaretemi1998/multi-worker:latest
