@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master
-  
+      
 env:
-  DOCKER_ID: ${{ secrets.DOCKER_ID }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Build client Docker test image
         run: |
           docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
@@ -24,11 +24,18 @@ jobs:
       - name: Run tests
         run: |
           docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
-
-      - name: Build Docker images and login to Docker Hub
+          
+      - name: Build Docker images and Log in to Docker Hub
         run: |
           docker build -t bujaretemi1998/multi-client:latest ./client
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo $DOCKER_PASSWORD --password-stdin | docker login --username=$secrets.DOCKER_ID              
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD --password-stdin
+
+      - name: Push images to Docker Hub
+        run: |
+          sudo docker push bujaretemi1998/multi-client
+          sudo docker push bujaretemi1998/multi-nginx
+          sudo docker push bujaretemi1998/multi-server
+          sudo docker push bujaretemi1998/multi-worker
