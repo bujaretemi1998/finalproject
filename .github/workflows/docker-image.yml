@@ -31,7 +31,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx:latest ./nginx
           docker build -t bujaretemi1998/multi-server:latest ./server
           docker build -t bujaretemi1998/multi-worker:latest ./worker
-          echo -p "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
+          echo -p "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
           docker push bujaretemi1998/multi-client
           docker push bujaretemi1998/multi-nginx
           docker push bujaretemi1998/multi-server
