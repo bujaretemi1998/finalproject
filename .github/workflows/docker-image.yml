@@ -27,10 +27,10 @@ jobs:
 
       - name: Build Docker images login and push
         run: |
-          docker build tag bujaretemi1998/multi-client:latest ./client
-          docker build tag bujaretemi1998/multi-nginx:latest ./nginx
-          docker build tag bujaretemi1998/multi-server:latest ./server
-          docker build tag bujaretemi1998/multi-worker:latest ./worker
+          docker build -t bujaretemi1998/multi-client:latest ./client
+          docker build -t bujaretemi1998/multi-nginx:latest ./nginx
+          docker build -t bujaretemi1998/multi-server:latest ./server
+          docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo --password-stdin "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID"
           
       - name: Push images to Docker Hub
