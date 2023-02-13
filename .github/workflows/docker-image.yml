@@ -27,16 +27,16 @@ jobs:
           
       - name: Build Docker images and Log in to Docker Hub
         run: |
-          docker build -t bujaretemi1998/multi-client ./client
-          docker build -t bujaretemi1998/multi-nginx ./nginx
-          docker build -t bujaretemi1998/multi-server ./server
-          docker build -t bujaretemi1998/multi-worker ./worker
+          docker build -t bujaretemi1998/multi-client:latest ./client
+          docker build -t bujaretemi1998/multi-nginx:latest ./nginx
+          docker build -t bujaretemi1998/multi-server:latest ./server
+          docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo $DOCKER_PASSWORD --password-stdin | docker login --username=$DOCKER_ID
 
       - name: Push images to Docker Hub
         run: |
           echo $DOCKER_PASSWORD --password-stdin | docker login --username=$DOCKER_ID
-          sudo docker push bujaretemi1998/multi-client
-          sudo docker push bujaretemi1998/multi-nginx
-          sudo docker push bujaretemi1998/multi-server
-          sudo docker push bujaretemi1998/multi-worker
+          sudo docker push bujaretemi1998/multi-client:latest
+          sudo docker push bujaretemi1998/multi-nginx:latest
+          sudo docker push bujaretemi1998/multi-server:latest
+          sudo docker push bujaretemi1998/multi-worker:latest
