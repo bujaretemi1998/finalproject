@@ -25,15 +25,15 @@ jobs:
         run: |
           docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
-      - name: Build Docker images
+      - name: Build Docker images and Log in to Docker Hub
         run: |
           docker build -t bujaretemi1998/multi-client ./client
           docker build -t bujaretemi1998/multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ secrets.DOCKER_ID }}
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ secrets.DOCKER_ID }} --password-stdin
           
-      - name: Log in to Docker CLI and push images to Docker Hub
+      - name: Push images to Docker Hub
         run: |
           docker push bujaretemi1998/multi-client
           docker push bujaretemi1998/multi-nginx
