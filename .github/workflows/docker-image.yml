@@ -27,11 +27,20 @@ jobs:
 
       - name: Build Docker images, login to Docker Hub and push
         run: |
-          echo $DOCKER_PASSWORD | docker login $DOCKER_ID
           docker build -t bujaretemi1998/multi-client ./client
           docker build -t bujaretemi1998/multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
+          echo $DOCKER_PASSWORD | docker login $DOCKER_ID
+          
+      - name: check push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          
+      - name: Push images to Docker Hub
+        run: |
           docker push bujaretemi1998/multi-client
           docker push bujaretemi1998/multi-nginx
           docker push bujaretemi1998/multi-server
