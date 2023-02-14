@@ -4,8 +4,8 @@ on:
       - master
       
 env:
-  DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ vars.DOCKER_PASSWORD }}
+  DOCKER_USERNAME: $DOCKER_USERNAME
+  DOCKER_PASSWORD: $DOCKER_PASSWORD
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
           docker build -t bujaretemi1998/multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
-          echo docker login --username ${{ vars.DOCKER_USERNAME }} --password ${{ vars.DOCKER_PASSWORD }} --password-stdin
+          echo docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }} --password-stdin
           
       - name: Push images to Docker Hub
         run: |
