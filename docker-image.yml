@@ -7,7 +7,7 @@ on:
 
 volumes:
       - name: dockerconfig
-        path: /root/.docker
+        path: /root/.
         path_relative_to_context: ${{ github.workspace }}/config.json
 
 env:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Push images to Docker Hub
         run: |
-          sudo docker push bujaretemi1998/multi-client
-          sudo docker push bujaretemi1998/multi-nginx
-          sudo docker push bujaretemi1998/multi-server
-          sudo docker push bujaretemi1998/multi-worker
+          docker push bujaretemi1998/multi-client
+          docker push bujaretemi1998/multi-nginx
+          docker push bujaretemi1998/multi-server
+          docker push bujaretemi1998/multi-worker
