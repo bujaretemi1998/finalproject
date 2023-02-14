@@ -8,7 +8,6 @@ on:
 env:
   DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  TAG_NAME: latest
 
 jobs:
   build:
@@ -28,21 +27,15 @@ jobs:
 
       - name: Build Docker images, login to Docker Hub and push
         run: |
-          docker build -t bujaretemi1998/multi-client:$TAG_NAME ./client
-          docker build -t bujaretemi1998/multi-nginx:$TAG_NAME ./nginx
-          docker build -t bujaretemi1998/multi-server:$TAG_NAME ./server
-          docker build -t bujaretemi1998/multi-worker:$TAG_NAME ./worker
+          docker build -t bujaretemi1998/multi-client:latest ./client
+          docker build -t bujaretemi1998/multi-nginx:latest ./nginx
+          docker build -t bujaretemi1998/multi-server:latest ./server
+          docker build -t bujaretemi1998/multi-worker:latest ./worker
           echo $DOCKER_PASSWORD | docker login $DOCKER_ID
-          
-      - name: check push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
           
       - name: Push images to Docker Hub
         run: |
-          docker push bujaretemi1998/multi-client:$TAG_NAME
-          docker push bujaretemi1998/multi-nginx:$TAG_NAME
-          docker push bujaretemi1998/multi-server:$TAG_NAME
-          docker push bujaretemi1998/multi-worker:$TAG_NAME
+          docker push bujaretemi1998/multi-client
+          docker push bujaretemi1998/multi-nginx
+          docker push bujaretemi1998/multi-server
+          docker push bujaretemi1998/multi-worker
