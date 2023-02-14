@@ -4,8 +4,8 @@ on:
       - master
       
 env:
-  DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
+  DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ vars.DOCKER_PASSWORD }}
 
 jobs:
   build:
