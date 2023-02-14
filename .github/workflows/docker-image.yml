@@ -19,11 +19,11 @@ jobs:
 
       - name: Build client Docker test image
         run: |
-          docker build -t bujaretemi1998/react-test:$TAG_NAME -f ./client/Dockerfile.dev ./client
+          docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
         run: |
-          docker run -e CI=true bujaretemi1998/react-test:$TAG_NAME npm test -- --coverage
+          docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
 
       - name: Build Docker images, login to Docker Hub and push
         run: |
