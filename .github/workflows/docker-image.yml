@@ -4,8 +4,8 @@ on:
       - master
       
 env:
-  DOCKER_USERNAME: ${{ Docker.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ Docker.DOCKER_PASSWORD }}
+  DOCKER_USERNAME: ${{ Docker.secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ Docker.secrets.DOCKER_PASSWORD }}
 
 jobs:
   build:
