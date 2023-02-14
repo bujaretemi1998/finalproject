@@ -32,7 +32,7 @@ jobs:
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
           echo $DOCKER_PASSWORD | docker login $DOCKER_ID
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
+          docker push docker.io/bujaretemi1998/multi-client
+          docker push docker.io/bujaretemi1998/multi-nginx
+          docker push docker.io/bujaretemi1998/multi-server
+          docker push docker.io/bujaretemi1998/multi-worker
