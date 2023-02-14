@@ -9,7 +9,6 @@ env:
   DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   TAG_NAME: latest
-  privileged: true
 
 jobs:
   build:
@@ -21,18 +20,18 @@ jobs:
 
       - name: Build client Docker test image
         run: |
-          docker build -t bujaretemi1998/react-test -f ./client/Dockerfile.dev ./client
+          docker build -t bujaretemi1998/react-test:$TAG_NAME -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
         run: |
-          docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
+          docker run -e CI=true bujaretemi1998/react-test:$TAG_NAME npm test -- --coverage
 
       - name: Build Docker images, login to Docker Hub and push
         run: |
-          docker build -t bujaretemi1998/multi-client ./client
-          docker build -t bujaretemi1998/multi-nginx ./nginx
-          docker build -t bujaretemi1998/multi-server ./server
-          docker build -t bujaretemi1998/multi-worker ./worker
+          docker build -t bujaretemi1998/multi-client:$TAG_NAME ./client
+          docker build -t bujaretemi1998/multi-nginx:$TAG_NAME ./nginx
+          docker build -t bujaretemi1998/multi-server:$TAG_NAME ./server
+          docker build -t bujaretemi1998/multi-worker:$TAG_NAME ./worker
           echo $DOCKER_PASSWORD | docker login $DOCKER_ID
           
       - name: check push
@@ -43,7 +42,7 @@ jobs:
           
       - name: Push images to Docker Hub
         run: |
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
+          docker push bujaretemi1998/multi-client:$TAG_NAME
+          docker push bujaretemi1998/multi-nginx:$TAG_NAME
+          docker push bujaretemi1998/multi-server:$TAG_NAME
+          docker push bujaretemi1998/multi-worker:$TAG_NAME
