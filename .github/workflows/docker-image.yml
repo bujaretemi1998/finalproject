@@ -8,7 +8,6 @@ on:
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  REGISTRY: ghcr.io
 
 jobs:
   build:
@@ -31,8 +30,8 @@ jobs:
           docker build -t bujaretemi1998/multi-client ./client
           docker build -t bujaretemi1998/multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server ./server
-          docker build -t bujaretemi1998/multi-worker ./worker
-          echo $DOCKER_PASSWORD | docker login $DOCKER_ID
+          docker build -t bujaretemi1998/multi-worker ./worker 
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
           
       - name: Push images to Docker Hub
         run: |
