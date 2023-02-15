@@ -28,10 +28,10 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build -t bujaretemi1998/multi-client ../.././client
-          docker build -t bujaretemi1998/multi-nginx ../.././nginx
-          docker build -t bujaretemi1998/multi-server ../.././server
-          docker build -t bujaretemi1998/multi-worker ../.././worker
+          docker build -t bujaretemi1998/multi-client ../../client
+          docker build -t bujaretemi1998/multi-nginx ../../nginx
+          docker build -t bujaretemi1998/multi-server ../../server
+          docker build -t bujaretemi1998/multi-worker ../../worker
           docker login:
             with:
               registry: ${{ env.REGISTRY }}
