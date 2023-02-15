@@ -21,7 +21,7 @@ jobs:
         with:
           registry: ghcr.io
           username: "bujaretemi1998"
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: "FloraEjup1998+"
 
       - name: Build client Docker test image
         run: |
