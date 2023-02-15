@@ -4,8 +4,8 @@ on:
       - master
       
 env:
-  DOCKER_USERNAME: $DOCKER_USERNAME
-  DOCKER_PASSWORD: $DOCKER_PASSWORD
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   build:
@@ -22,17 +22,18 @@ jobs:
       - name: Run tests
         run: |
           docker run -e CI=true bujaretemi1998/react-test npm test -- --coverage
+          
       - name: Build Docker images, login to Docker Hub and push
         run: |
           docker build -t bujaretemi1998/multi-client ./client
           docker build -t bujaretemi1998/multi-nginx ./nginx
           docker build -t bujaretemi1998/multi-server ./server
           docker build -t bujaretemi1998/multi-worker ./worker
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          echo docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_PASSWORD"
           
       - name: Push images to Docker Hub
         run: |
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
+          sudo docker push bujaretemi1998/multi-client
+          sudo docker push bujaretemi1998/multi-nginx
+          sudo docker push bujaretemi1998/multi-server
+          sudo docker push bujaretemi1998/multi-worker
