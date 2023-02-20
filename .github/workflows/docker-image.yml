@@ -51,7 +51,6 @@ jobs:
           bucket_name: "elasticbeanstalk-us-east-1-161134197230"
           bucket_path: "docker-multi"
           region: "us-east-1" # Change to your desired region
-          version_label: 2
           deployment_package: Dockerrun.aws.json
 
 
