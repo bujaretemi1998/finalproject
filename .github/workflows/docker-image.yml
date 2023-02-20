@@ -57,7 +57,7 @@ jobs:
               "description": "Deployment package for multi-docker",
               "files": [
                 {
-                  "source": "./Dockerrun.aws.json",
+                  "source": "././Dockerrun.aws.json",
                   "destination": "Dockerrun.aws.json"
                 }
               ]
