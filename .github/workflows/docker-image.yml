@@ -45,14 +45,23 @@ jobs:
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v16
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: "multi-docker"
           environment_name: "MultiDocker-env"
           bucket_name: "elasticbeanstalk-us-east-1-161134197230"
           bucket_path: "docker-multi"
           region: "us-east-1" # Change to your desired region
-          version_label: Sample Application
-
+          version_label: "Sample Application-1"
+          deployment_package: |
+            {
+              "description": "Deployment package for multi-docker",
+              "files": [
+                {
+                  "source": "./Dockerrun.aws.json",
+                  "destination": "Dockerrun.aws.json"
+                }
+              ]
+            }
 
         
