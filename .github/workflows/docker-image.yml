@@ -52,7 +52,6 @@ jobs:
           bucket_path: "docker-multi"
           region: "us-east-1" # Change to your desired region
           version_label: "Sample Application"
-          deployment_package: Dockerrun.aws.json
 
 
         
