@@ -18,6 +18,7 @@ jobs:
         with:
           username: "${{ secrets.DOCKER_USERNAME }}"
           password: "${{ secrets.DOCKER_PASSWORD }}"
+          tag_with_sha: true
 
       - name: Build client Docker test image
         run: |
@@ -51,7 +52,7 @@ jobs:
           bucket_name: "elasticbeanstalk-us-east-1-161134197230"
           bucket_path: "docker-multi"
           region: "us-east-1" # Change to your desired region
-          version_label: "Sample Application"
+          version_label: ${{ github.sha }}
 
 
         
