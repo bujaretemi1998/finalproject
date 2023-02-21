@@ -52,6 +52,6 @@ jobs:
           bucket_name: "elasticbeanstalk-us-east-1-161134197230"
           bucket_path: "docker-multi"
           region: "us-east-1" # Change to your desired region
-          use_existing_version_if_available: true
+          version_label: "Sample Application-1"
 
         
