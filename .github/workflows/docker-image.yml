@@ -52,6 +52,6 @@ jobs:
           bucket_name: "elasticbeanstalk-us-east-1-161134197230"
           bucket_path: "docker-multi"
           region: "us-east-1"
-          version_label: "Multi-docker-version-1" 
+          version_label: "Sample Application" 
 
         
