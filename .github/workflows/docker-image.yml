@@ -43,15 +43,15 @@ jobs:
           docker push bujaretemi1998/multi-worker
 
       - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v16
+        uses: einaregilsson/beanstalk-deploy@v14
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: "multi-docker"
-          environment_name: "MultiDocker-env"
-          bucket_name: "elasticbeanstalk-us-east-1-161134197230"
-          bucket_path: "docker-multi"
-          region: "us-east-1"
-          version_label: "Sample Application" 
+          region: 'us-east-1'
+          application_name: 'multi-docker'
+          environment_name: 'MultiDocker-env'
+          version_label: ${{ github.sha }}
+          bucket_name: 'elasticbeanstalk-us-east-1-161134197230'
+          bucket_path: 'docker-multi'
 
         
