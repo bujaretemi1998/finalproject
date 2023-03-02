@@ -41,17 +41,15 @@ jobs:
           docker push bujaretemi1998/multi-nginx
           docker push bujaretemi1998/multi-server
           docker push bujaretemi1998/multi-worker
+          apt-get update
+          apt-get install python3-pip
+          pip3 install awsebcli --upgrade --user
 
       - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v14
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          region: 'us-east-1'
-          application_name: 'multi-docker'
-          environment_name: 'MultiDocker-env'
-          version_label: 'Sample Application-1'
-          bucket_name: 'elasticbeanstalk-us-east-1-161134197230'
-          bucket_path: 'docker-multi'
+        run: |
+          eb init -p docker --region us-east-1
+          eb use Multidocker-env
+          eb create sample-application-1
+          eb deploy
 
         
