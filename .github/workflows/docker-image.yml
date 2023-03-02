@@ -50,7 +50,7 @@ jobs:
           region: 'us-east-1'
           application_name: 'multi-docker'
           environment_name: 'MultiDocker-env'
-          version_label: 'Sample Application'
+          version_label: 'Sample Application-1'
           bucket_name: 'elasticbeanstalk-us-east-1-161134197230'
           bucket_path: 'docker-multi'
 
