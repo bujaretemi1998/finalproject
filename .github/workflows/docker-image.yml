@@ -42,24 +42,20 @@ jobs:
           docker push bujaretemi1998/multi-server
           docker push bujaretemi1998/multi-worker
 
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y curl unzip
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
+      - name: Package Application
+        run: zip -r finalproject.zip .
 
-      - name: Deploy to Multidocker-env
-        run: |
-          aws elasticbeanstalk create-application-version \
-              --application-name multi-docker \
-              --version-label sample-application-1 \
-              --source-bundle S3Bucket=your-bucket-name,S3Key=path/to/your/app.zip \
-              --region us-west-2
-          aws elasticbeanstalk update-environment \
-              --environment-name Multidocker-env \
-              --version-label sample-application-1 \
-              --region us-west-2
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          region: "us-east-1"
+          application_name: "multi-docker"
+          environment_name: "Multidocker-env-2"
+          version_label: ${{ github.sha }}
+          bucket_name: 'elasticbeanstalk-us-east-1-161134197230'
+          bucket_path: 'docker-multi'
+          deployment_package: "finalproject.zip"
 
         
