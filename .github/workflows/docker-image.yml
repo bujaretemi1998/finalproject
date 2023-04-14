@@ -30,32 +30,10 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build -t bujaretemi1998/multi-client ./client
-          docker build -t bujaretemi1998/multi-nginx ./nginx
-          docker build -t bujaretemi1998/multi-server ./server
-          docker build -t bujaretemi1998/multi-worker ./worker 
+          docker build -t bujaretemi1998/multi-client2 ./client
           
       - name: Push images to Docker Hub
         run: |
-          docker push bujaretemi1998/multi-client
-          docker push bujaretemi1998/multi-nginx
-          docker push bujaretemi1998/multi-server
-          docker push bujaretemi1998/multi-worker
-
-      - name: Package Application
-        run: zip -r finalproject.zip .
-
-      - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v18
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          region: "us-east-1"
-          application_name: "multi-docker"
-          environment_name: "Multidocker-env-2"
-          version_label: ${{ github.sha }}
-          bucket_name: 'elasticbeanstalk-us-east-1-161134197230'
-          bucket_path: 'docker-multi'
-          deployment_package: "finalproject.zip"
+          docker push bujaretemi1998/multi-client2
 
         
